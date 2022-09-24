@@ -1,4 +1,4 @@
-# General Template
+# WebUntis API for Lessontopics in Python
 
 [![gh-commit-badge][gh-commit-badge]][gh-commit]
 [![gh-contributors-badge][gh-contributors-badge]][gh-contributors]
@@ -6,12 +6,22 @@
 
 ## Description
 
-This is a general repository template for all projects done by the organization lazybytez.  
-You can use it if you want. Just be sure to modify the names and emails.
+I don't like python but oh well here I am...  
+This was made entirely in my free time and is in no way associated with any business.  
+It is my first python project so mistakes can happen so please keep that in mind.
 
 ## Getting started
 
-tbd
+1. Copy env file
+
+```shell
+cp .env.example .env
+```
+
+2. Fill in your login credentials into the `.env` file.  
+   (Don't worry, the `.env` does not get committed so your secrets are safe there)
+
+3. If you want an example of how this works go to [/examples/webuntis_example.py](/examples/webuntis_example.py)
 
 ## Contributing
 
@@ -28,30 +38,30 @@ the [How to Contribute][gh-contribute] document.
 
 <hr>  
 
-###### Copyright (c) [Lazy Bytez][gh-team]. All rights reserved | Licensed under the MIT license.
+###### Copyright (c) [Elias Knodel][gh-team]. All rights reserved | Licensed under the MIT license.
 
 <!-- Variables -->
 
-[gh-commit-badge]: https://img.shields.io/github/last-commit/lazybytez/general-template?style=for-the-badge&colorA=302D41&colorB=cba6f7
+[gh-commit-badge]: https://img.shields.io/github/last-commit/elias-knodel/webuntis-lessontopic-py?style=for-the-badge&colorA=302D41&colorB=cba6f7
 
-[gh-commit]: https://github.com/lazybytez/general-template/commits/main
+[gh-commit]: https://github.com/elias-knodel/webuntis-lessontopic-py/commits/main
 
-[gh-contributors-badge]: https://img.shields.io/github/contributors/lazybytez/general-template?style=for-the-badge&colorA=302D41&colorB=89dceb
+[gh-contributors-badge]: https://img.shields.io/github/contributors/elias-knodel/webuntis-lessontopic-py?style=for-the-badge&colorA=302D41&colorB=89dceb
 
-[gh-contributors]: https://github.com/lazybytez/general-template/graphs/contributors
+[gh-contributors]: https://github.com/elias-knodel/webuntis-lessontopic-py/graphs/contributors
 
-[gh-stars-badge]: https://img.shields.io/github/stars/lazybytez?style=for-the-badge&colorA=302D41&colorB=f9e2af
+[gh-stars-badge]: https://img.shields.io/github/stars/elias-knodel/webuntis-lessontopic?style=for-the-badge&colorA=302D41&colorB=f9e2af
 
-[gh-stars]: https://github.com/lazybytez/general-template/stargazers
+[gh-stars]: https://github.com/elias-knodel/webuntis-lessontopic-py/stargazers
 
-[gh-contribute]: https://github.com/lazybytez/.github/blob/main/docs/CONTRIBUTING.md
+[gh-contribute]: https://github.com/elias-knodel/webuntis-lessontopic-py/blob/main/CONTRIBUTING.md
 
-[gh-license]: https://github.com/lazybytez/general-template/blob/main/LICENSE
+[gh-license]: https://github.com/elias-knodel/webuntis-lessontopic-py/blob/main/LICENSE
 
-[gh-codeofconduct]: https://github.com/lazybytez/.github/blob/main/docs/CODE_OF_CONDUCT.md
+[gh-codeofconduct]: https://github.com/elias-knodel/webuntis-lessontopic-py/blob/main/CODE_OF_CONDUCT.md
 
-[gh-issues]: https://github.com/lazybytez/general-template/issues
+[gh-issues]: https://github.com/elias-knodel/webuntis-lessontopic-py/issues
 
-[gh-pulls]: https://github.com/lazybytez/general-template/pulls
+[gh-pulls]: https://github.com/elias-knodel/webuntis-lessontopic-py/pulls
 
-[gh-team]: https://github.com/lazybytez
+[gh-team]: https://github.com/elias-knodel
