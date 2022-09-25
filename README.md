@@ -23,6 +23,87 @@ cp .env.example .env
 
 3. If you want an example of how this works go to [/webuntis_example.py](/webuntis_example.py)
 
+## How to use
+
+### In code
+
+```python
+import webuntis
+import cache
+from decouple import config
+
+# Get login credentials from env file
+username = config('USERNAME')
+password = config('PASSWORD')
+server = config('SERVER')
+school = config('SCHOOL')
+
+# Create WebUntis API Wrapper Object
+client = webuntis.Webuntis(username, password, server, school)
+
+# Log the client in webuntis
+client.login()
+
+# This gets all lessons in all your school-years and saves them into a cache file
+cacheL = cache.Cache("lessons")
+isValidLT = cacheL.verify()
+
+if not isValidLT:
+    lessons = client.get_all_lessons()
+    cacheL.write(json_data=lessons)
+
+# This gets all lessons in a day in all years and loops over them
+# Then it saves the topics of each lesson into a cache file
+cacheLT = cache.Cache("lessontopics")
+isValidLT = cacheLT.verify()
+
+if not isValidLT:
+    lesson_topic_dict = {}
+
+    for year in cacheL.read():
+        for lesson in year:
+            index_day = lesson["date"]
+            index_lesson = lesson["startTime"]
+
+            if lesson_topic_dict.get(index_day) is None:
+                lesson_topic_dict[index_day] = []
+
+            lesson_topic_dict[index_day].append(client.get_lesson_topic(lesson))
+
+    cacheLT.write(json_data=lesson_topic_dict)
+
+# Log the client out
+client.logout()
+
+# Now you can access the data by reading the cache
+cacheLT.read()
+```
+
+### Data Structure
+
+So you can access the lesson topics with `cacheLT.read()` now... But what does it return?
+
+Here is an example:
+
+```json
+{
+    "20220919": [
+        {
+            "startTime": 925,
+            "subject": "D",
+            "subjectLong": "Deutsch",
+            "topic": "Aufgaben"
+        },
+        {
+            "startTime": 1010,
+            "subject": "E",
+            "subjectLong": "Englisch",
+            "topic": "Assignments"
+        }
+    ]
+}
+```
+
 ## Contributing
 
 If you want to take part in contribution, like fixing issues and contributing directly to the code base, plase visit

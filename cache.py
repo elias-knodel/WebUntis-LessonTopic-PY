@@ -30,9 +30,16 @@ class Cache:
     def verify(self):
         if not self.file.is_file():
             return False
-        with open(self.cache_id, "r") as openfile:
-            json_object = json.load(openfile)
+        with open(self.cache_id, "r") as file:
+            json_object = json.load(file)
         if json_object["latestUpdate"] != today_string:
             return False
         else:
             return True
+
+    # Outputs the ["data"] object of given json file
+    def read(self):
+        with open(self.cache_id, "r") as file:
+            json_object = json.load(file)
+
+        return json_object["data"]
