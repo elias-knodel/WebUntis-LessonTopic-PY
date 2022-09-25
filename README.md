@@ -21,7 +21,7 @@ cp .env.example .env
 2. Fill in your login credentials into the `.env` file.  
    (Don't worry, the `.env` does not get committed so your secrets are safe there)
 
-3. If you want an example of how this works go to [/examples/webuntis_example.py](/examples/webuntis_example.py)
+3. If you want an example of how this works go to [/webuntis_example.py](/webuntis_example.py)
 
 ## Contributing
 
