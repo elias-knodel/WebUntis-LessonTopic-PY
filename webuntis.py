@@ -119,13 +119,13 @@ class Webuntis:
 
         return requests.request(method=rest_method, url=url, json=payload, headers=self.headers, params=querystring)
 
-    def timetable_request(self, elem_id, elem_type, start_date, end_date):
+    def timetable_request(self, start_date, end_date):
         parameter = {
             "options": {
                 "id": int(time.time() * 1000),
                 "element": {
-                    "id": elem_id,
-                    "type": elem_type
+                    "id": self.sessionInformation["personId"],
+                    "type": self.sessionInformation["personType"]
                 },
                 "startDate": start_date,
                 "endDate": end_date,
@@ -145,18 +145,56 @@ class Webuntis:
 
         return res
 
-    def get_lesson_topics(self):
+    def get_all_lessons(self):
         res = self.generate_request(rest_method="GET", untis_method="getSchoolyears")
         school_years = res.json()['result']
 
         timetables = []
 
         for year in school_years:
-            res = self.timetable_request(self.sessionInformation['personId'], self.sessionInformation['personType'],
-                                         year['startDate'], year['endDate'])
+            res = self.timetable_request(year['startDate'], year['endDate'])
             if res:
                 if res.json():
                     if res.json()['result']:
                         timetables.append(res.json()['result'])
 
         return timetables
+
+    def get_lesson_topic(self, lesson):
+        parameter = {}
+        url = self.baseurl + "/WebUntis/api/public/period/info"
+        querystring = {
+            'school': self.school,
+            "date": lesson["date"],
+            "starttime": lesson["startTime"],
+            "endtime": lesson["endTime"],
+            "elemid": self.sessionInformation["personId"],
+            "elemtype": self.sessionInformation["personType"],
+            "ttFmtId": "1",
+            "selectedPeriodId": lesson["id"],
+        }
+        payload = {
+            "id": self.id,
+            "params": parameter,
+            "jsonrpc": "2.0"
+        }
+        res = requests.request(method="GET", url=url, json=payload, headers=self.headers, params=querystring)
+
+        lesson_dict = {
+            "startTime": lesson["startTime"],
+            "subject": "",
+            "subjectLong": "",
+            "topic": ""
+        }
+
+        res_data = res.json()["data"]
+        if res_data["blocks"]:
+            for block in res_data["blocks"]:
+                for lesson in block:
+                    if lesson["subjectName"]:
+                        lesson_dict["subject"] = lesson["subjectName"]
+                    if lesson["subjectNameLong"]:
+                        lesson_dict["subjectLong"] = lesson["subjectNameLong"]
+                    if lesson["lessonTopic"]:
+                        lesson_dict["topic"] = lesson["lessonTopic"]["text"]
+                    return lesson_dict
