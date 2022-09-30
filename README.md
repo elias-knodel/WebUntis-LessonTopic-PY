@@ -131,7 +131,7 @@ the [How to Contribute][gh-contribute] document.
 
 [gh-contributors]: https://github.com/elias-knodel/webuntis-lessontopic-py/graphs/contributors
 
-[gh-stars-badge]: https://img.shields.io/github/stars/elias-knodel/webuntis-lessontopic?style=for-the-badge&colorA=302D41&colorB=f9e2af
+[gh-stars-badge]: https://img.shields.io/github/stars/elias-knodel/webuntis-lessontopic-py?style=for-the-badge&colorA=302D41&colorB=f9e2af
 
 [gh-stars]: https://github.com/elias-knodel/webuntis-lessontopic-py/stargazers
 
